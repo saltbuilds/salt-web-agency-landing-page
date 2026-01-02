@@ -5,8 +5,8 @@ import SaltCharacter from './SaltCharacter';
 
 const Footer: React.FC = () => {
   const socials = [
-    { 
-      name: 'Instagram', 
+    {
+      name: 'Instagram',
       url: 'https://www.instagram.com/buildwithsalt/',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -16,8 +16,8 @@ const Footer: React.FC = () => {
         </svg>
       )
     },
-    { 
-      name: 'Facebook', 
+    {
+      name: 'Facebook',
       url: 'https://web.facebook.com/profile.php?id=61585690749471',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -25,8 +25,8 @@ const Footer: React.FC = () => {
         </svg>
       )
     },
-    { 
-      name: 'TikTok', 
+    {
+      name: 'TikTok',
       url: 'https://www.tiktok.com/@saltbuilds',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -34,8 +34,8 @@ const Footer: React.FC = () => {
         </svg>
       )
     },
-    { 
-      name: 'LinkedIn', 
+    {
+      name: 'LinkedIn',
       url: 'https://www.linkedin.com/company/saltbuilds/about/?viewAsMember=true',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
         <SaltCharacter type="vacation" size={150} />
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-4 gap-16 mb-20">
           {/* Brand */}
           <div className="col-span-2 space-y-8">
@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex gap-4">
               {socials.map(social => (
-                <a 
+                <a
                   key={social.name}
                   href={social.url}
                   target="_blank"
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
             <h5 className="text-lg font-bold mb-8 uppercase tracking-widest text-slate-400">Services</h5>
             <ul className="space-y-4 font-medium text-slate-300">
               {services.map((service) => (
-                <li 
+                <li
                   key={service}
                   className="group flex items-center gap-0 hover:gap-3 hover:text-[#81C7D4] cursor-pointer transition-all duration-300"
                 >

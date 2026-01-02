@@ -24,14 +24,14 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
   };
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? 'bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm py-3' 
-          : 'bg-transparent py-6'
-      }`}
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+        ? 'backdrop-blur-xl border-b shadow-sm py-3'
+        : 'bg-transparent py-6'
+        }`}
+      style={scrolled ? { backgroundColor: 'rgba(240, 249, 251, 0.7)', borderColor: 'rgba(129, 199, 212, 0.2)' } : {}}
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 flex justify-between items-center">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 flex justify-between items-center">
         {/* Brand/Logo */}
         <BrandIdentity iconSize="w-8 h-8" textSize="text-2xl" />
 
@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-current transition-all group-hover:w-full opacity-20" />
             </a>
           ))}
-          <button 
+          <button
             onClick={scrollToPackages}
             className="px-6 py-2.5 rounded-xl text-white font-bold text-sm uppercase tracking-widest transition-all hover:scale-105 hover:shadow-lg active:scale-95 shadow-md backdrop-blur-md bg-opacity-90"
             style={{ backgroundColor: COLORS.NAVY }}
@@ -58,8 +58,9 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
         </div>
 
         {/* Mobile Toggle */}
-        <button 
-          className="md:hidden p-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20"
+        <button
+          className="md:hidden p-2 rounded-lg backdrop-blur-sm border"
+          style={{ backgroundColor: 'rgba(240, 249, 251, 0.2)', borderColor: 'rgba(129, 199, 212, 0.3)' }}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <div className={`w-6 h-0.5 mb-1.5 transition-all ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} style={{ backgroundColor: COLORS.NAVY }} />
@@ -70,7 +71,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white/90 backdrop-blur-2xl border-t border-white/20 p-8 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300">
+        <div className="md:hidden absolute top-full left-0 right-0 backdrop-blur-2xl border-t p-8 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300" style={{ backgroundColor: 'rgba(240, 249, 251, 0.9)', borderColor: 'rgba(129, 199, 212, 0.2)' }}>
           <div className="flex flex-col gap-8">
             {navLinks.map((link) => (
               <a
@@ -83,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
                 {link.name}
               </a>
             ))}
-            <button 
+            <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 scrollToPackages();

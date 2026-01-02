@@ -8,10 +8,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    sourcemap: false,
   },
   define: {
-    'process.env': {
-      API_KEY: process.env.API_KEY || ''
-    }
+    'process.env.API_KEY': JSON.stringify(process.env.API_KEY || '')
   }
 });

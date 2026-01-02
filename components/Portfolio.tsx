@@ -13,10 +13,10 @@ const projects: ProjectType[] = [
 const Portfolio: React.FC = () => {
   return (
     <div id="portfolio" className="py-24 md:py-32">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div className="space-y-4">
-            <h2 
+            <h2
               className="text-4xl md:text-6xl font-black uppercase tracking-tighter"
               style={{ color: COLORS.NAVY }}
             >
@@ -26,7 +26,7 @@ const Portfolio: React.FC = () => {
               Explore how we've helped businesses transform their digital presence with clean, minimalist excellence.
             </p>
           </div>
-          <button 
+          <button
             className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm transition-all hover:gap-4 group"
             style={{ color: COLORS.NAVY }}
           >
@@ -39,32 +39,32 @@ const Portfolio: React.FC = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {projects.map((project) => (
-            <div 
+            <div
               key={project.id}
               className="group cursor-pointer"
             >
-              <div 
+              <div
                 className="aspect-[4/5] rounded-[2.5rem] mb-6 relative overflow-hidden transition-all group-hover:shadow-[0_30px_60px_-15px_rgba(129,199,212,0.3)] border border-slate-100 group-hover:border-aqua/20"
                 style={{ backgroundColor: COLORS.GRAY_LIGHT }}
               >
                 {/* 2D Design representation */}
                 <div className="absolute inset-0 p-8 flex flex-col justify-center items-center text-center opacity-40 transition-opacity group-hover:opacity-100">
-                   <div className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: COLORS.AQUA }}>
-                     SALT Creative
-                   </div>
-                   <div className="font-bold text-slate-400">
-                     {project.placeholder}
-                   </div>
-                   <div className="mt-4 flex gap-2">
-                     <div className="w-8 h-8 rounded-full bg-white shadow-sm" />
-                     <div className="w-8 h-8 rounded-full bg-white shadow-sm" />
-                   </div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: COLORS.AQUA }}>
+                    SALT Creative
+                  </div>
+                  <div className="font-bold text-slate-400">
+                    {project.placeholder}
+                  </div>
+                  <div className="mt-4 flex gap-2">
+                    <div className="w-8 h-8 rounded-full bg-white shadow-sm" />
+                    <div className="w-8 h-8 rounded-full bg-white shadow-sm" />
+                  </div>
                 </div>
-                
+
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-slate-900/5 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              
+
               <div className="px-4">
                 <div className="text-[11px] font-black uppercase tracking-[0.2em] mb-1" style={{ color: COLORS.AQUA }}>
                   {project.category}

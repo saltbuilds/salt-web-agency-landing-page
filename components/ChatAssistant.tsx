@@ -18,14 +18,15 @@ const ChatAssistant: React.FC = () => {
   useEffect(() => {
     const initChat = async () => {
       if (chatRef.current) return;
-      const apiKey = process.env.API_KEY;
+      // Accessing the injected API key
+      const apiKey = (process.env as any).API_KEY;
       if (apiKey) {
         try {
           const ai = new GoogleGenAI({ apiKey });
           chatRef.current = ai.chats.create({
             model: 'gemini-3-flash-preview',
             config: {
-              systemInstruction: `You are the AI assistant for ${BRAND_CONFIG.fullName}. Your tone is professional and premium. SALT builds digital foundations.`
+              systemInstruction: `You are the AI assistant for ${BRAND_CONFIG.fullName}. Your tone is professional and premium. SALT builds digital foundations. Keep answers concise and helpful.`
             }
           });
         } catch (e) {
@@ -48,19 +49,21 @@ const ChatAssistant: React.FC = () => {
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setInput('');
     setIsTyping(true);
+    
     if (!chatRef.current) {
       setTimeout(() => {
-        setMessages(prev => [...prev, { role: 'model', text: "Offline mode. Please contact hello@salt-agency.com" }]);
+        setMessages(prev => [...prev, { role: 'model', text: "Assistant is initializing or offline. Please contact hello@salt-agency.com" }]);
         setIsTyping(false);
       }, 1000);
       return;
     }
+
     try {
       const response = await chatRef.current.sendMessage({ message: userMsg });
       setMessages(prev => [...prev, { role: 'model', text: response.text }]);
     } catch (error) {
       console.error(error);
-      setMessages(prev => [...prev, { role: 'model', text: "Connection error." }]);
+      setMessages(prev => [...prev, { role: 'model', text: "I'm having trouble connecting right now. Please try again in a moment." }]);
     } finally {
       setIsTyping(false);
     }
@@ -119,6 +122,15 @@ const ChatAssistant: React.FC = () => {
                 </div>
               </div>
             ))}
+            {isTyping && (
+              <div className="flex justify-start">
+                <div className="bg-white/60 backdrop-blur-sm border border-white/40 text-navy p-4 rounded-3xl rounded-tl-none flex gap-1 items-center">
+                  <div className="w-1.5 h-1.5 bg-navy/20 rounded-full animate-bounce" />
+                  <div className="w-1.5 h-1.5 bg-navy/20 rounded-full animate-bounce [animation-delay:0.2s]" />
+                  <div className="w-1.5 h-1.5 bg-navy/20 rounded-full animate-bounce [animation-delay:0.4s]" />
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="p-6 border-t border-white/40 bg-white/20">
@@ -131,7 +143,7 @@ const ChatAssistant: React.FC = () => {
                 placeholder="Ask about our process..."
                 className="flex-1 bg-transparent border-none px-6 py-4 text-sm font-bold placeholder:text-navy/30 focus:ring-0 outline-none"
               />
-              <button onClick={handleSend} disabled={!input.trim() || isTyping} className="w-14 h-14 flex items-center justify-center rounded-2xl text-white shadow-lg" style={{ backgroundColor: COLORS.NAVY }}>
+              <button onClick={handleSend} disabled={!input.trim() || isTyping} className="w-14 h-14 flex items-center justify-center rounded-2xl text-white shadow-lg transition-transform active:scale-90" style={{ backgroundColor: COLORS.NAVY }}>
                 <svg className="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg>
               </button>
             </div>
