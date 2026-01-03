@@ -1,11 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Packages from './components/Packages';
 import Portfolio from './components/Portfolio';
 import Footer from './components/Footer';
-import ChatAssistant from './components/ChatAssistant';
 
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -52,7 +50,6 @@ const App: React.FC = () => {
           <Portfolio />
         </section>
       </main>
-      <ChatAssistant />
       <Footer />
 
       <style>{`
