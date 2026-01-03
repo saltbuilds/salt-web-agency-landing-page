@@ -1,10 +1,9 @@
-
 {
   "name": "salt-web-agency",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://saltbuilds.github.io/SALT",
+  "homepage": ".",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

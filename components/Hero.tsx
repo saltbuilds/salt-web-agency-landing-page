@@ -99,11 +99,22 @@ const Hero: React.FC = () => {
         {/* Content - Left side */}
         <div className="space-y-6 md:space-y-10 max-w-xl text-left z-10 relative">
           <div
-            className={`absolute -top-16 -left-12 hidden md:block cursor-pointer ${isShaking ? 'animate-shake' : ''}`}
+            className={`absolute -top-16 -left-12 hidden md:block cursor-pointer group ${isShaking ? 'animate-shake' : ''}`}
             onClick={handleCharacterClick}
             style={{ pointerEvents: 'auto' }}
           >
             <div className="relative">
+              {/* Hover Tooltip */}
+              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
+                <div className="bg-navy text-black px-4 py-2 rounded-lg text-sm font-bold whitespace-nowrap shadow-lg">
+                  Shake Me!!
+                  {/* Arrow pointing down */}
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1">
+                    <div className="border-8 border-transparent border-t-navy"></div>
+                  </div>
+                </div>
+              </div>
+
               <SaltCharacter type="hero" size={110} />
               <div className="absolute top-20 left-14 w-full h-screen pointer-events-none overflow-visible">
                 {activeSaltParticles.map((particle) => (
@@ -154,11 +165,13 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 md:gap-5 pt-2 md:pt-4 animate-fade-in" style={{ animationDelay: '0.8s' }}>
               <button
                 onClick={() => scrollToSection('packages')}
-                className="px-10 md:px-12 py-4 md:py-5 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all hover:shadow-2xl hover:-translate-y-1 active:scale-95 shadow-xl relative overflow-hidden group"
+                className="px-10 md:px-12 py-4 md:py-5 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all hover:shadow-2xl hover:-translate-y-1 active:scale-95 shadow-xl relative overflow-hidden group animate-cta-attract"
                 style={{ backgroundColor: COLORS.NAVY }}
               >
                 <span className="relative z-10">LET'S TALK</span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
+                {/* Animated pulsing ring */}
+                <div className="absolute inset-0 rounded-2xl animate-pulse-ring" style={{ borderColor: COLORS.AQUA }} />
               </button>
               <button
                 onClick={() => scrollToSection('portfolio')}
@@ -288,8 +301,12 @@ const Hero: React.FC = () => {
         @keyframes spin-slow-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
         .animate-spin-slow { animation: spin-slow 20s linear infinite; }
         .animate-spin-slow-reverse { animation: spin-slow-reverse 25s linear infinite; }
-        @keyframes code-type { 0% { transform: scaleX(0); opacity: 0; } 100% { transform: scaleX(1); opacity: 1; } }
-        .animate-code-type { animation: code-type 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+        @keyframes code-type { 
+          0% { transform: scaleX(0); opacity: 0; } 
+          50% { transform: scaleX(1); opacity: 1; } 
+          100% { transform: scaleX(0); opacity: 0; } 
+        }
+        .animate-code-type { animation: code-type 3s cubic-bezier(0.19, 1, 0.22, 1) infinite; }
         @keyframes component-snap { 0% { transform: scale(0.9) translateY(20px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
         .animate-component-snap { animation: component-snap 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; opacity: 0; }
         @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(2deg); } }
@@ -345,6 +362,40 @@ const Hero: React.FC = () => {
         }
         .animate-walk-in {
           animation: walk-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes pulse-ring {
+          0% {
+            border: 0px solid;
+            opacity: 0.8;
+            transform: scale(1);
+          }
+          50% {
+            border: 3px solid;
+            opacity: 0.4;
+          }
+          100% {
+            border: 0px solid;
+            opacity: 0;
+            transform: scale(1.15);
+          }
+        }
+        .animate-pulse-ring {
+          animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes cta-attract {
+          0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          }
+          50% {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(17, 76, 94, 0.25), 0 0 25px rgba(37, 219, 242, 0.3);
+          }
+        }
+        .animate-cta-attract {
+          animation: cta-attract 2.5s ease-in-out infinite;
         }
       `}</style>
     </div>
